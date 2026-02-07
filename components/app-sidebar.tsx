@@ -1,7 +1,8 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import {
   LayoutDashboard,
   UserCircle,
@@ -12,7 +13,11 @@ import {
   BarChart3,
   BookOpen,
   FileBarChart,
+  LogOut,
+  Loader2,
 } from "lucide-react"
+import { useAuthUser } from "@/components/auth-guard"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
   Sidebar,
   SidebarContent,
@@ -63,6 +68,20 @@ const NAV_ITEMS = [
 
 export function AppSidebar() {
   const pathname = usePathname()
+  const router = useRouter()
+  const user = useAuthUser()
+  const [loggingOut, setLoggingOut] = useState(false)
+
+  async function handleLogout() {
+    setLoggingOut(true)
+    try {
+      await fetch("/api/auth/logout", { method: "POST" })
+      router.push("/login")
+      router.refresh()
+    } catch {
+      setLoggingOut(false)
+    }
+  }
 
   return (
     <Sidebar>
@@ -114,7 +133,7 @@ export function AppSidebar() {
         ))}
       </SidebarContent>
 
-      <SidebarFooter className="p-4">
+      <SidebarFooter className="p-4 space-y-3">
         <div className="rounded-lg border border-sidebar-border bg-sidebar-accent/50 p-3 space-y-2">
           <p className="text-xs font-medium text-sidebar-foreground">Modo Demo</p>
           <div className="flex flex-wrap gap-1">
@@ -125,10 +144,36 @@ export function AppSidebar() {
               {SEED_CONTENTS.length} contenidos
             </Badge>
           </div>
-          <p className="text-xs text-sidebar-foreground/50">
-            Dataset sintetico con datos generados para demo
-          </p>
         </div>
+
+        {/* User profile + logout */}
+        {user && (
+          <div className="rounded-lg border border-sidebar-border bg-sidebar-accent/50 p-3">
+            <div className="flex items-center gap-3">
+              <Avatar className="h-8 w-8 bg-sidebar-primary text-sidebar-primary-foreground">
+                <AvatarFallback className="bg-sidebar-primary text-sidebar-primary-foreground text-xs font-semibold">
+                  {user.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)}
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-sidebar-foreground truncate">{user.name}</p>
+                <p className="text-xs text-sidebar-foreground/50 truncate">{user.email}</p>
+              </div>
+              <button
+                onClick={handleLogout}
+                disabled={loggingOut}
+                className="flex h-8 w-8 items-center justify-center rounded-md text-sidebar-foreground/50 hover:text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
+                aria-label="Cerrar sesion"
+              >
+                {loggingOut ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <LogOut className="h-4 w-4" />
+                )}
+              </button>
+            </div>
+          </div>
+        )}
       </SidebarFooter>
     </Sidebar>
   )
