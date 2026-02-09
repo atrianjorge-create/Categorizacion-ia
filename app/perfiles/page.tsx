@@ -259,7 +259,7 @@ function ProfileDetailDialog({ profile }: { profile: Profile }) {
                     </div>
                   </div>
                   <div className="text-right flex-shrink-0">
-                    <p className="text-xs font-semibold text-foreground">{c.metrics.views.toLocaleString()}</p>
+                    <p className="text-xs font-semibold text-foreground">{c.metrics.views.toLocaleString("es-ES")}</p>
                     <p className="text-xs text-muted-foreground">{Math.round(c.aiTags.confidence * 100)}%</p>
                   </div>
                 </div>

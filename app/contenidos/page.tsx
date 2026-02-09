@@ -65,7 +65,7 @@ function ContentDetailDialog({ content }: { content: Content }) {
               <div key={label} className="text-center p-2 rounded-lg bg-secondary/30">
                 <Icon className="h-4 w-4 mx-auto text-muted-foreground mb-1" />
                 <p className="text-sm font-semibold text-foreground">
-                  {typeof value === "number" ? value.toLocaleString() : value}
+                  {typeof value === "number" ? value.toLocaleString("es-ES") : value}
                 </p>
                 <p className="text-xs text-muted-foreground">{label}</p>
               </div>
@@ -343,7 +343,7 @@ export default function ContenidosPage() {
                       ))}
                     </div>
                     <div className="flex items-center justify-between text-xs text-muted-foreground pt-1 border-t">
-                      <span>{content.metrics.views.toLocaleString()} vistas</span>
+                      <span>{content.metrics.views.toLocaleString("es-ES")} vistas</span>
                       <span className="font-mono">{Math.round(content.aiTags.confidence * 100)}% conf.</span>
                     </div>
                   </CardContent>
@@ -375,7 +375,7 @@ export default function ContenidosPage() {
                         </div>
                       </div>
                       <div className="text-right flex-shrink-0">
-                        <p className="text-sm font-semibold text-card-foreground">{content.metrics.views.toLocaleString()}</p>
+                        <p className="text-sm font-semibold text-card-foreground">{content.metrics.views.toLocaleString("es-ES")}</p>
                         <p className="text-xs text-muted-foreground">{Math.round(content.aiTags.confidence * 100)}% conf.</p>
                       </div>
                     </div>

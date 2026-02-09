@@ -192,7 +192,7 @@ export default function ReportesPage() {
         <CardContent className="space-y-4">
           <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {[
-              { label: "Contenidos Analizados", value: stats.total.toLocaleString(), icon: Layers, color: "text-primary" },
+              { label: "Contenidos Analizados", value: stats.total.toLocaleString("es-ES"), icon: Layers, color: "text-primary" },
               { label: "Vistas Totales", value: stats.totalViews >= 1000000 ? `${(stats.totalViews / 1000000).toFixed(1)}M` : `${(stats.totalViews / 1000).toFixed(0)}K`, icon: Eye, color: "text-[hsl(var(--chart-3))]" },
               { label: "Engagement Rate", value: `${stats.engRate.toFixed(2)}%`, icon: TrendingUp, color: "text-[hsl(var(--success))]" },
               { label: "Confianza IA Media", value: `${(stats.avgConfidence * 100).toFixed(1)}%`, icon: Percent, color: "text-primary" },
@@ -300,7 +300,7 @@ export default function ReportesPage() {
                     </TableCell>
                     <TableCell className="text-center text-sm">{ps.count}</TableCell>
                     <TableCell className="text-center text-sm">{ps.pct}%</TableCell>
-                    <TableCell className="text-center text-sm">{ps.views.toLocaleString()}</TableCell>
+                    <TableCell className="text-center text-sm">{ps.views.toLocaleString("es-ES")}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

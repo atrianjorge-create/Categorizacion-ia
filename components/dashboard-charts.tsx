@@ -48,7 +48,7 @@ export function KpiCards({ contents }: { contents: Content[] }) {
   const kpis = [
     {
       label: "Total Contenidos",
-      value: totalContents.toLocaleString(),
+      value: totalContents.toLocaleString("es-ES"),
       description: "Analizados por IA",
       icon: BarChart3,
       color: "text-primary",
@@ -98,7 +98,7 @@ export function KpiCards({ contents }: { contents: Content[] }) {
     },
     {
       label: "Total Shares",
-      value: contents.reduce((sum, c) => sum + c.metrics.shares, 0).toLocaleString(),
+      value: contents.reduce((sum, c) => sum + c.metrics.shares, 0).toLocaleString("es-ES"),
       description: "Veces compartido",
       icon: Share2,
       color: "text-[hsl(var(--chart-4))]",
@@ -395,7 +395,7 @@ export function EngagementScatterChart({ contents }: { contents: Content[] }) {
             />
             <ZAxis type="number" dataKey="confidence" range={[30, 150]} name="Confianza" />
             <Tooltip contentStyle={tooltipStyle} formatter={(value: number, name: string) => [
-              name === "Vistas" ? value.toLocaleString() : name === "Engagement" ? value.toLocaleString() : `${value.toFixed(0)}%`,
+              name === "Vistas" ? value.toLocaleString("es-ES") : name === "Engagement" ? value.toLocaleString("es-ES") : `${value.toFixed(0)}%`,
               name === "Vistas" ? "Vistas" : name === "Engagement" ? "Engagement" : "Confianza"
             ]} />
             <Scatter data={data} fill="hsl(var(--primary))" fillOpacity={0.6} />
@@ -562,11 +562,11 @@ export function EngagementSummary({ contents }: { contents: Content[] }) {
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Likes</p>
-                  <p className="text-sm font-semibold text-card-foreground">{ps.totalLikes.toLocaleString()}</p>
+                  <p className="text-sm font-semibold text-card-foreground">{ps.totalLikes.toLocaleString("es-ES")}</p>
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Shares</p>
-                  <p className="text-sm font-semibold text-card-foreground">{ps.totalShares.toLocaleString()}</p>
+                  <p className="text-sm font-semibold text-card-foreground">{ps.totalShares.toLocaleString("es-ES")}</p>
                 </div>
               </div>
             </div>

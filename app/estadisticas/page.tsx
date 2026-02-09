@@ -146,15 +146,15 @@ export default function EstadisticasPage() {
       {/* Mega KPI Grid */}
       <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         {[
-          { label: "Contenidos", value: stats.total.toLocaleString(), icon: FileText, color: "text-primary" },
+          { label: "Contenidos", value: stats.total.toLocaleString("es-ES"), icon: FileText, color: "text-primary" },
           { label: "Vistas Totales", value: stats.totalViews >= 1000000 ? `${(stats.totalViews/1000000).toFixed(1)}M` : `${(stats.totalViews/1000).toFixed(0)}K`, icon: Eye, color: "text-[hsl(var(--chart-3))]" },
           { label: "Engagement Rate", value: `${stats.engRate.toFixed(2)}%`, icon: TrendingUp, color: "text-[hsl(var(--success))]" },
           { label: "Confianza IA", value: `${(stats.avgConfidence * 100).toFixed(1)}%`, icon: Percent, color: "text-primary" },
           { label: "Perfiles", value: profiles.length.toString(), icon: Target, color: "text-[hsl(var(--chart-4))]" },
           { label: "Total Likes", value: stats.totalLikes >= 1000000 ? `${(stats.totalLikes/1000000).toFixed(1)}M` : `${(stats.totalLikes/1000).toFixed(0)}K`, icon: ThumbsUp, color: "text-primary" },
-          { label: "Comentarios", value: stats.totalComments.toLocaleString(), icon: MessageSquare, color: "text-[hsl(var(--chart-2))]" },
-          { label: "Shares", value: stats.totalShares.toLocaleString(), icon: Share2, color: "text-[hsl(var(--chart-5))]" },
-          { label: "Guardados", value: stats.totalSaved.toLocaleString(), icon: Bookmark, color: "text-[hsl(var(--warning))]" },
+          { label: "Comentarios", value: stats.totalComments.toLocaleString("es-ES"), icon: MessageSquare, color: "text-[hsl(var(--chart-2))]" },
+          { label: "Shares", value: stats.totalShares.toLocaleString("es-ES"), icon: Share2, color: "text-[hsl(var(--chart-5))]" },
+          { label: "Guardados", value: stats.totalSaved.toLocaleString("es-ES"), icon: Bookmark, color: "text-[hsl(var(--warning))]" },
           { label: "Watch Time", value: `${Math.round(stats.totalWatchTime/3600)}h`, icon: Clock, color: "text-muted-foreground" },
         ].map(kpi => (
           <Card key={kpi.label}>
@@ -249,10 +249,10 @@ export default function EstadisticasPage() {
                         </div>
                       </TableCell>
                       <TableCell className="text-center text-sm">{ps.count}</TableCell>
-                      <TableCell className="text-center text-sm">{ps.views.toLocaleString()}</TableCell>
-                      <TableCell className="text-center text-sm">{ps.likes.toLocaleString()}</TableCell>
-                      <TableCell className="text-center text-sm">{ps.comments.toLocaleString()}</TableCell>
-                      <TableCell className="text-center text-sm">{ps.shares.toLocaleString()}</TableCell>
+                      <TableCell className="text-center text-sm">{ps.views.toLocaleString("es-ES")}</TableCell>
+                      <TableCell className="text-center text-sm">{ps.likes.toLocaleString("es-ES")}</TableCell>
+                      <TableCell className="text-center text-sm">{ps.comments.toLocaleString("es-ES")}</TableCell>
+                      <TableCell className="text-center text-sm">{ps.shares.toLocaleString("es-ES")}</TableCell>
                       <TableCell className="text-center text-sm font-semibold">{ps.engRate.toFixed(2)}%</TableCell>
                       <TableCell className="text-center">
                         <div className="flex items-center justify-center gap-1">
@@ -344,8 +344,8 @@ export default function EstadisticasPage() {
                         </div>
                       </TableCell>
                       <TableCell className="text-center text-sm">{ts.count}</TableCell>
-                      <TableCell className="text-center text-sm">{ts.views.toLocaleString()}</TableCell>
-                      <TableCell className="text-center text-sm">{ts.likes.toLocaleString()}</TableCell>
+                      <TableCell className="text-center text-sm">{ts.views.toLocaleString("es-ES")}</TableCell>
+                      <TableCell className="text-center text-sm">{ts.likes.toLocaleString("es-ES")}</TableCell>
                       <TableCell className="text-center text-sm font-semibold">{ts.engRate.toFixed(2)}%</TableCell>
                       <TableCell className="text-center">
                         <div className="flex items-center justify-center gap-1">
@@ -514,8 +514,8 @@ export default function EstadisticasPage() {
                       <TableCell className="font-bold text-muted-foreground">{i + 1}</TableCell>
                       <TableCell className="font-medium text-sm font-mono">{author}</TableCell>
                       <TableCell className="text-center text-sm">{data.count}</TableCell>
-                      <TableCell className="text-center text-sm font-semibold">{data.views.toLocaleString()}</TableCell>
-                      <TableCell className="text-center text-sm">{Math.round(data.views / data.count).toLocaleString()}</TableCell>
+                      <TableCell className="text-center text-sm font-semibold">{data.views.toLocaleString("es-ES")}</TableCell>
+                      <TableCell className="text-center text-sm">{Math.round(data.views / data.count).toLocaleString("es-ES")}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
