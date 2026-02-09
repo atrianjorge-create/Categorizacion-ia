@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo, useEffect } from "react"
+import { useState, useMemo } from "react"
 import { SEED_PROFILES, SEED_CONTENTS } from "@/lib/seed-data"
 import { PLATFORM_LABELS, THEMES, TONES, type Theme, type Platform } from "@/lib/types"
 import { DashboardFilters } from "@/components/dashboard-filters"
@@ -34,9 +34,6 @@ import {
 import Link from "next/link"
 
 export default function DashboardPage() {
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => { setMounted(true) }, [])
-
   const [selectedProfile, setSelectedProfile] = useState("all")
   const [selectedPlatform, setSelectedPlatform] = useState("all")
   const [selectedTheme, setSelectedTheme] = useState("all")
@@ -99,32 +96,6 @@ export default function DashboardPage() {
       .map(([p, stats]) => ({ platform: p, label: PLATFORM_LABELS[p as Platform], ...stats }))
       .sort((a, b) => b.count - a.count)
   }, [filteredContents])
-
-  if (!mounted) {
-    return (
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground text-balance">
-            Dashboard de Categorizacion
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            Cargando datos...
-          </p>
-        </div>
-        <div className="grid gap-3 grid-cols-2 lg:grid-cols-4">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <Card key={i} className="animate-pulse">
-              <CardContent className="p-4">
-                <div className="h-4 bg-muted rounded w-2/3 mb-2" />
-                <div className="h-6 bg-muted rounded w-1/3 mb-1" />
-                <div className="h-3 bg-muted rounded w-1/2" />
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="space-y-6">
