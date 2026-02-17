@@ -1,14 +1,9 @@
 import React from "react"
 import type { Metadata } from "next"
-import dynamic from "next/dynamic"
 import { Inter, JetBrains_Mono } from "next/font/google"
+import { ClientShellWrapper } from "@/components/client-shell-wrapper"
 
 import "./globals.css"
-
-const ClientShell = dynamic(
-  () => import("@/components/client-shell").then((m) => m.ClientShell),
-  { ssr: false }
-)
 
 const _inter = Inter({ subsets: ["latin"] })
 const _jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
@@ -27,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
-        <ClientShell>{children}</ClientShell>
+        <ClientShellWrapper>{children}</ClientShellWrapper>
       </body>
     </html>
   )
