@@ -1,10 +1,14 @@
 import React from "react"
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
 import { Inter, JetBrains_Mono } from "next/font/google"
-import { Separator } from "@/components/ui/separator"
 
 import "./globals.css"
-import { ClientShell } from "@/components/client-shell"
+
+const ClientShell = dynamic(
+  () => import("@/components/client-shell").then((m) => m.ClientShell),
+  { ssr: false }
+)
 
 const _inter = Inter({ subsets: ["latin"] })
 const _jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })

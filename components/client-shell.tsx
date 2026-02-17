@@ -1,27 +1,14 @@
 "use client"
 
-import { useState, useEffect, type ReactNode } from "react"
+import type { ReactNode } from "react"
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import { Separator } from "@/components/ui/separator"
-import { Skeleton } from "@/components/ui/skeleton"
 import { TooltipProvider } from "@/components/ui/tooltip"
 
+// This component is loaded via next/dynamic with ssr:false in layout.tsx,
+// so it never runs on the server and cannot cause hydration mismatches.
 export function ClientShell({ children }: { children: ReactNode }) {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // Render nothing on the server — the server and first client render both
-  // produce null, so hydration always matches.  Once mounted, we render the
-  // full shell purely on the client, which avoids browser-extension attributes
-  // (e.g. bis_skin_checked) causing attribute-level hydration mismatches.
-  if (!mounted) {
-    return null
-  }
-
   return (
     <TooltipProvider delayDuration={0}>
       <SidebarProvider>
