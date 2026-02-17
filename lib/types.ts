@@ -104,6 +104,26 @@ export interface AITags {
   confidence: number // 0-1
   keywords: string[]
   explanation: string // explicabilidad: por que se categorizo asi
+  // Campos de explicabilidad enriquecida
+  method: "ai" | "local"            // motor que genero las etiquetas
+  detectedKeywords: string[]         // palabras clave detectadas con su contexto
+  confidenceBreakdown: {             // confianza desglosada por dimension
+    theme: number
+    tone: number
+    intent: number
+    risk: number
+  }
+  summary: string                    // resumen corto de 1 linea
+}
+
+// Solicitud de categorizacion (individual o batch)
+export interface CategorizationRequest {
+  title: string
+  description: string
+  platform: Platform
+  format: Format
+  author?: string
+  url?: string
 }
 
 // ---- METRICAS AGREGADAS ----

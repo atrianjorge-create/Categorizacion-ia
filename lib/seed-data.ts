@@ -485,6 +485,15 @@ export function generateContents(): Content[] {
         confidence: Math.floor(70 + prng() * 29) / 100,
         keywords: template.keywords,
         explanation: template.explanation,
+        method: "local",
+        detectedKeywords: template.keywords,
+        confidenceBreakdown: {
+          theme: Math.floor(75 + prng() * 24) / 100,
+          tone: Math.floor(70 + prng() * 28) / 100,
+          intent: Math.floor(68 + prng() * 30) / 100,
+          risk: Math.floor(72 + prng() * 26) / 100,
+        },
+        summary: `${template.themes[0]}: ${template.title.slice(0, 60)}`,
       },
     })
   })
@@ -531,6 +540,15 @@ export function generateContents(): Content[] {
         confidence: Math.floor(55 + prng() * 41) / 100,
         keywords: tpl.keywords,
         explanation: `Categorizado automaticamente con confianza variable. Tema principal: ${themes[0]}. Clasificacion basada en analisis NLP del titulo y descripcion.`,
+        method: "local",
+        detectedKeywords: tpl.keywords,
+        confidenceBreakdown: {
+          theme: Math.floor(55 + prng() * 40) / 100,
+          tone: Math.floor(50 + prng() * 45) / 100,
+          intent: Math.floor(48 + prng() * 47) / 100,
+          risk: Math.floor(52 + prng() * 43) / 100,
+        },
+        summary: `${themes[0]}: ${tpl.title.slice(0, 60)}`,
       },
     })
   }

@@ -46,6 +46,22 @@ export function getContent(id: string): Content | undefined {
   return contents.find((c) => c.id === id)
 }
 
+export function addContent(content: Content): Content {
+  contents.push(content)
+  return content
+}
+
+export function addContents(newContents: Content[]): Content[] {
+  contents.push(...newContents)
+  return newContents
+}
+
+export function deleteContent(id: string): boolean {
+  const len = contents.length
+  contents = contents.filter((c) => c.id !== id)
+  return contents.length < len
+}
+
 // ---- METRICS ----
 export function getMetrics(): AggregatedMetrics[] {
   return metrics
