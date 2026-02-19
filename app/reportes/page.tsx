@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -121,7 +121,10 @@ export default function ReportesPage() {
     }
   }, [contents])
 
-  const currentDate = new Date().toLocaleDateString("es-ES", { year: "numeric", month: "long", day: "numeric" })
+  const [currentDate, setCurrentDate] = useState("")
+  useEffect(() => {
+    setCurrentDate(new Date().toLocaleDateString("es-ES", { year: "numeric", month: "long", day: "numeric" }))
+  }, [])
   const profileName = selectedProfile === "all" ? "Todos los perfiles" : SEED_PROFILES.find((p) => p.id === selectedProfile)?.name
 
   return (
